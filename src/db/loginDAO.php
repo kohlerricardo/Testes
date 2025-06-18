@@ -1,15 +1,17 @@
 <?php
-require_once 'db/db.php';
+require_once 'db.php';
 
-function consultaLogin($user,$pass)
+function consultaLogin($username,$password)
 {
-    $sql = "select * from usuario where login = ? and password = ?";
+    $sql = "select * from usuario where username = ? and password = ?";
     $conn = conectar();
-    $result = buscarUnico($conn,$sql,[$user,$pass]);
-    if(count($result)!=1){
-        return "Erro. Usuário não encontrado";
+    $result = buscarUnico($conn,$sql,[$username,$password]);
+    desconectar($conn);
+    if(!$result){    
+        return ['error'=>true,'msg'=>"Erro. Usuário não encontrado"];
     }
-    global $usuario = ['username' => $result['username'],
-                        'nome'    => $result['Nome']
-                    ];
+    $usuario = ['username' => $result['username'],
+                        'nome'    => $result['nome']
+                ];
+    return $usuario;
 }

@@ -2,10 +2,10 @@
 
 function conectar()
 {
-    $host = 'localhost';
+    $host = '127.0.0.1';
     $user = 'root';
-    $password ='';
-    $database = 'projeto';
+    $password ='root';
+    $database = 'testes';
     $db = mysqli_connect($host,$user,$password,$database) or die("Erro. Não foi possível conectar");
     return $db;
 }

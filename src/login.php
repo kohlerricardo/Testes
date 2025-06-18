@@ -1,8 +1,10 @@
 <?php
 require_once 'db/loginDAO.php';
 
-function login($usuario,$senha):bool
+function login($usuario,$senha)
 {
-
-    return true;
+    $usuario = consultaLogin($usuario,$senha);
+    if(isset($usuario['error']))
+        return false;
+    return $usuario;
 }
