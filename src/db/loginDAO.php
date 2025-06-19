@@ -3,6 +3,7 @@ require_once 'db.php';
 
 function consultaLogin($username,$password)
 {
+    
     $sql = "select * from usuario where username = ? and password = ?";
     $conn = conectar();
     $result = buscarUnico($conn,$sql,[$username,$password]);
